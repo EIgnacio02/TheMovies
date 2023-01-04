@@ -1,0 +1,44 @@
+﻿@model ML.Movie
+@{
+    ViewData["Title"] = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1>Peliculas favoritas</h1>
+
+<div class="grid-wrapper container">
+  <div class="row">
+@foreach(ML.Movie movie in Model.MovieList)
+{
+    <!-- Card -->
+    <div class="card-container box col-4">
+	    <div class="card-flip">
+        <!-- Card Front -->
+            <div class="card front">
+              <img src="@movie.Imagen" class="card-img-top img-fluid" alt="movie-poster">
+                <div class="card-block">
+                  <h5 class="card-title">@movie.Nombre</h5>
+                    <p class="card-text"><small class="text-muted">@movie.Fecha</small></p>
+                </div>
+            </div>
+        <!-- End Card Front -->
+
+        <!-- Card Back -->
+        <div class="card back">
+            <div class="card-header warning-color">
+            </div>
+            <div class="card-block text-center">
+              <h4 class="card-title">Descripcion</h4>
+              <p class="card-text"><a href="#" class="rating">@movie.Descripcion</a></p>
+              <a href="#" class="btn orange">Watch</a>
+            </div>
+          </div>
+          <!-- End Card Back -->
+	    </div>
+    </div>
+<!-- End Card -->
+}
+  </div>
+</div>
+
