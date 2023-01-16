@@ -1,11 +1,10 @@
 ﻿@model ML.Movie
 @{
-    ViewData["Title"] = "GetAll";
+    ViewData["Title"] = "MoviePopular";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-<h1>Peliculas favoritas</h1>
+<h1>Peliculas Populares</h1>
 
 <div class="grid-wrapper container">
   <div class="row">
@@ -26,13 +25,13 @@
 
         <!-- Card Back -->
         <div class="card back">
-            <div class="card-header warning-color">
+            <div class="card-header primary-color">
             </div>
             <div class="card-block text-center">
               <h4 class="card-title">Descripcion</h4>
               <p class="card-text"><a href="#" class="rating">@movie.Descripcion</a></p>
-              <a href="#" class="btn blue">Ver <i class="fa-solid fa-film fa-beat"></i></a>
-
+              
+              <a class="btn blue" href="@Url.Action("AddMoviePopular","Movie", new { IdMovie = movie.IdMovie , Favorito=true })"> <span style="color:white">Agregar a favoritos</span> <i class="fa-solid fa-heart fa-beat" style="color:red"></i></a>
             </div>
           </div>
           <!-- End Card Back -->
@@ -42,8 +41,4 @@
 }
   </div>
 </div>
-
-
-
-
 

@@ -83,7 +83,7 @@
 }
 
 .btn {
-    color: #383428 !important;
+    color: white !important;
 }
 
     .btn:hover {
@@ -92,12 +92,12 @@
 
 .rating {
     text-decoration: none;
-    color: #ff9800 !important;
+    color: white !important;
 }
 
     .rating:hover {
         text-decoration: none;
-        color: #ffcc80 !important;
+        color: white !important;
     }
 
 .movie {
