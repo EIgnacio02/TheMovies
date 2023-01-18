@@ -27,7 +27,7 @@ namespace BL
                         {
                             ML.Cine cine = new ML.Cine();
 
-                            cine.IdCine= obj.IdCine;
+                            cine.IdCine= (int)obj.IdCine;
                             cine.Nombre = obj.Nombre;
                             cine.Direccion = obj.Direccion;
                             cine.Venta = (int)obj.Venta;
@@ -66,7 +66,7 @@ namespace BL
                     {
                         ML.Cine cine = new ML.Cine();
 
-                        cine.IdCine = query.IdCine;
+                        cine.IdCine = (int)query.IdCine;
                         cine.Nombre = query.Nombre;
                         cine.Direccion = query.Direccion;
                         cine.Venta = (int)query.Venta;
@@ -165,6 +165,44 @@ namespace BL
 
             }
 
+            return result;
+        }
+
+        public static ML.Result GetAllVentas()
+        {
+            ML.Result result = new ML.Result();
+
+            ML.Cine cine1 = new ML.Cine();
+            try
+            {
+                using (DL.EignacioApiMovieContext context = new DL.EignacioApiMovieContext())
+                {
+                    //cine1.IdCine = (cine1.IdCine == null) ? 0 : cine1.IdCine;
+					var query = context.Cines.FromSqlRaw("VentasGetAll").ToList();
+                    result.Objects= new List<object> ();
+
+                    if (query != null)
+                    {
+                        foreach (var obj in query)
+                        {
+                            ML.Cine cine = new ML.Cine();
+
+                            cine.Nombre = obj.Nombre;
+                            cine.Venta = (int)obj.Venta;
+
+                            cine.Zona = new ML.Zona();
+                            cine.Zona.Descripcion = obj.Descripcion;
+
+                            result.Objects.Add(cine);
+                        }
+                    }
+				}
+                result.Correct= true;
+            }
+            catch (Exception ex)
+            {
+
+            }
             return result;
         }
     }

@@ -1,0 +1,66 @@
+﻿@model ML.Cine
+
+@{
+    ViewData["Title"] = "Grafica";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container text-center">
+<div class="row">
+
+    <div class="col-md-3">
+        @Html.TextBoxFor(model =>model.Norte, new{@class = "form-control", @id = "txtNorte", @style="display:none"})
+    </div>
+
+    <div class="col-md-3">
+        @Html.TextBoxFor(model =>model.Sur, new{@class = "form-control", @id = "txtSur", @style="display:none"})
+    </div>
+
+    <div class="col-md-3">
+        @Html.TextBoxFor(model =>model.Este, new{@class = "form-control", @id = "txtCentro", @style="display:none"})
+    </div>
+
+    <div class="col-md-3">
+        @Html.TextBoxFor(model =>model.Oeste, new{@class = "form-control", @id = "txtOriente", @style="display:none"})
+    </div>
+
+    <div class="col-md-3">
+        @Html.TextBoxFor(model =>model.Total, new{@class = "form-control", @id = "txtTotal", @style="display:none"})
+    </div>
+
+</div>
+</div>
+
+<div id="chartContainer" style="height: 370px; width:100%;"></div>
+
+
+
+<script>
+    window.onload = function () {
+        var norte = document.getElementById("txtNorte").value;
+        var sur = document.getElementById("txtSur").value;
+        var este = document.getElementById("txtCentro").value;
+        var oeste = document.getElementById("txtOriente").value;
+        var options = {
+            title: {
+                text: "Grafica de ventas"
+            },
+            animationEnabled: true,
+            data: [{
+                type: "pie",
+                startAngle: 40,
+                toolTipContent: "<b>[label]</b>: {y}%",
+                showInLegend: "true",
+                legendText: "{label}",
+                indexLabel: "{label}-{y}%",
+                dataPoints: [
+                    { y: norte, label: "Norte" },
+                    { y: sur, label: "Sur" },
+                    { y: este, label: "Este" },
+                    { y: oeste, label: "Oeste" }
+                ]
+            }]
+        };
+        $("#chartContainer").CanvasJSChart(options);
+    }
+</script>
+
